@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+// add @types/node-sass, node-sass, typescript into devDependencies
 
 function App() {
   return (
