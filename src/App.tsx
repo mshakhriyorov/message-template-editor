@@ -1,26 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Route, Routes } from 'react-router';
+
 import './App.scss';
 
-export const App: React.FC = () => {
-  const text: string = 'Edit';
+import { Card } from './components/Card';
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {text} <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+import { routePaths } from './utils/routePaths';
+
+export const App: React.FC = () => (
+  <div className="app">
+    <Routes>
+      <Route path={routePaths.home()} element={<Card />} />
+    </Routes>
+  </div>
+);
