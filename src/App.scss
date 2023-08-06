@@ -1,5 +1,15 @@
 @import './assets/style/variables';
 
 .app {
-  color: $primary-color;
+  font-family: Inter;
+  height: auto;
+  overflow: auto;
+  background: url('./assets/images/social-media.jpg');
+
+  &--overflow {
+    overflow: hidden;
+    height: 100vh;
+    background: url('./assets/images/bg.svg'), #1d1d1d;
+    mix-blend-mode: overlay;
+  }
 }

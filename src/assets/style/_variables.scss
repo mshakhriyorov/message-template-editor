@@ -1,6 +1,7 @@
 // colors
 $base-color: #f4ebff;
 $primary-color: #7f56d9;
+$white-color: #ffffff;
 
 // width and height dimensions
 @mixin size($width, $height: $width) {
@@ -15,20 +16,3 @@ $note-effect:
 $button-and-tag-effect:
   -2px -2px 1px #fff,
   2px 2px 2px rgba(0, 0, 0, 0.16);
-
-// mixin effects
-@mixin note-effect {
-  box-shadow: 2px 2px 2px rgba(174, 174, 174, 0.5);
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    backdrop-filter: blur(80px);
-    border-radius: inherit;
-    z-index: -1;
-  }
-}

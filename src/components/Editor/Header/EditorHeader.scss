@@ -1,0 +1,15 @@
+@import '../../../assets/style/variables';
+
+.editor-header {
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editor-header__variables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  color: $white-color;
+}

@@ -1,0 +1,16 @@
+@import '../../assets/style/variables';
+
+.editor {
+  width: 100%;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editor__header {
+  text-align: center;
+  color: $white-color;
+  padding: 16px;
+  font-size: 24px;
+}

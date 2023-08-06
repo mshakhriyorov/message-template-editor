@@ -1,0 +1,33 @@
+@import '../../assets/style/variables';
+
+.card {
+  @include size(100%, 100vh);
+
+  backdrop-filter: blur(10px);
+  background-color: #00000091;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__box {
+  @include size(360px, auto);
+
+  padding: 16px;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: 8px;
+}
+
+.card__text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  color: $white-color;
+}

@@ -1,0 +1,31 @@
+@import '../../assets/style/variables';
+
+.button {
+  background-color: $base-color;
+  color: $primary-color;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &.disabled {
+    color: gray;
+  }
+
+  &--default {
+    padding: 10px 18px;
+    border-radius: 8px;
+    box-shadow: $button-and-tag-effect;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &--variable {
+    padding: 4px;
+    border-radius: 4px;
+  }
+}
