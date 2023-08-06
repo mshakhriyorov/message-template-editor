@@ -3,6 +3,7 @@ import { createEditor } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import type { BaseEditor, Descendant } from 'slate';
 import type { ReactEditor } from 'slate-react';
+import { withHistory } from 'slate-history';
 
 type CustomElement = {
   type: 'paragraph';
@@ -23,7 +24,7 @@ declare module 'slate' {
 import './Editor.scss';
 
 import { EditorHeader } from './Header';
-// import { EditorInput } from './Input';
+import { serialize } from '../../utils/serialize';
 
 const VARIABLES = ['{firstName}', '{lastName}', '{company}', '{position}'];
 
@@ -40,14 +41,16 @@ const initialDocument: Descendant[] = [
 
 export const Editor = (): JSX.Element => {
   // const [isFocused, setIsFocused] = useState(false);
-  const editor = useMemo(() => withReact(createEditor()), []);
+  const editor = useMemo(() => withReact(withHistory(createEditor())), []);
   const [value, setValue] = useState(initialDocument);
-  console.log(value);
 
   return (
     <div className="editor">
       <div className="editor__header">Message Template Editor</div>
-      <EditorHeader variables={VARIABLES} isInputFocused={!!value} />
+      <EditorHeader
+        variables={VARIABLES}
+        isInputFocused={!!serialize(value, initialDocument)}
+      />
 
       <div className="editor__slate">
         <Slate
