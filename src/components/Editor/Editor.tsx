@@ -1,16 +1,33 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { createEditor } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import type { BaseEditor, Descendant } from 'slate';
 import type { ReactEditor } from 'slate-react';
 import { withHistory } from 'slate-history';
 
-type CustomElement = {
-  type: 'paragraph';
-  children: CustomText[];
-};
+import './Editor.scss';
+
+import { EditorHeader } from './Header';
+import { serialize } from '../../utils/serialize';
+// import { EditorVariables } from './Variables';
+import { EditorElement } from './Element';
+
+const VARIABLES = ['{firstName}', '{lastName}', '{company}', '{position}'];
+
 type CustomText = {
   text: string;
+};
+
+type CustomElement = {
+  type: 'variable' | 'paragraph';
+  children: CustomText[];
+  character: string;
+};
+
+type PROPS = {
+  children: string;
+  element: { type: 'variable' | 'paragraph'; character: string };
+  attributes: React.HTMLAttributes<HTMLElement>;
 };
 
 declare module 'slate' {
@@ -21,16 +38,10 @@ declare module 'slate' {
   }
 }
 
-import './Editor.scss';
-
-import { EditorHeader } from './Header';
-import { serialize } from '../../utils/serialize';
-
-const VARIABLES = ['{firstName}', '{lastName}', '{company}', '{position}'];
-
 const initialDocument: Descendant[] = [
   {
     type: 'paragraph',
+    character: '',
     children: [
       {
         text: '',
@@ -40,16 +51,22 @@ const initialDocument: Descendant[] = [
 ];
 
 export const Editor = (): JSX.Element => {
-  // const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const editor = useMemo(() => withReact(withHistory(createEditor())), []);
   const [value, setValue] = useState(initialDocument);
+  const renderElement = useCallback(
+    (props: PROPS): JSX.Element => <EditorElement {...props} />,
+    [],
+  );
+  console.log(serialize(value, initialDocument));
 
   return (
     <div className="editor">
       <div className="editor__header">Message Template Editor</div>
       <EditorHeader
         variables={VARIABLES}
-        isInputFocused={!!serialize(value, initialDocument)}
+        isInputFocused={isFocused}
+        editor={editor}
       />
 
       <div className="editor__slate">
@@ -57,12 +74,19 @@ export const Editor = (): JSX.Element => {
           editor={editor}
           initialValue={initialDocument}
           onChange={(value: Descendant[]): void => setValue(value)}
-          // onFocus={(): void => setIsFocused(true)}
         >
-          <Editable />
+          <Editable
+            placeholder="Optional text"
+            renderElement={renderElement}
+            className="editor__input"
+            contentEditable="false"
+            onFocus={(): void => setIsFocused(true)}
+            onBlur={(): void => setIsFocused(false)}
+          />
+
+          {/* <EditorVariables /> */}
         </Slate>
       </div>
-      {/* <EditorInput setIsFocused={setIsFocused} /> */}
     </div>
   );
 };

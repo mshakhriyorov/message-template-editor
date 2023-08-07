@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 
 type Props = {
   content: string;
-  variant?: 'default' | 'variable';
+  variant?: 'default' | 'small';
   disabled?: boolean;
   onClick?: (event: React.MouseEvent<HTMLElement>) => void;
 };

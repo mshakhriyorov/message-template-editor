@@ -16,9 +16,19 @@
 }
 
 .editor__slate {
-  width: 100%;
-  max-height: 30px;
-  padding: 8px 12px;
-  border-radius: 4px;
+  background: #31363b;
+  padding: 12px;
+  box-shadow: $input-effect;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+}
+
+.editor__input {
   color: $white-color;
+  background: #31363b;
+  border: none;
+
+  &:focus-visible {
+    outline: none;
+  }
 }
