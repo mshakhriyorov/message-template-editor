@@ -1,19 +1,6 @@
 import { Text } from 'slate';
 
-type CustomText = Text & {
-  bold?: boolean;
-  italic?: boolean;
-};
-
-type CustomElement = {
-  type: string;
-  children: CustomNode[];
-};
-
-type CustomNode = CustomElement | CustomText;
-
-// define the function type for serializeNote
-type SerializeNote = (node: CustomNode, structureTags: unknown) => string;
+import type { Serialize, SerializeNote } from '../types/serialize';
 
 const serializeNote: SerializeNote = (node, structureTags) => {
   if (Text.isText(node)) {
@@ -26,9 +13,6 @@ const serializeNote: SerializeNote = (node, structureTags) => {
 
   return children;
 };
-
-// define the function type for serialize
-type Serialize = (nodes: CustomNode[], structureTags: unknown) => string;
 
 export const serialize: Serialize = (nodes, structureTags) =>
   nodes.map(node => serializeNote(node, structureTags)).join('');

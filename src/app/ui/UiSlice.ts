@@ -1,13 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-type INITIAL_STATE_PROPS = {
-  isVisibleEditor: boolean;
-  variables: string[];
-};
+import type { INITIAL_STATE_PROPS } from '../../types/ui-slice';
 
 export const UiSlice = createSlice({
   name: 'ui',
-  initialState: { isVisibleEditor: true, variables: [] },
+  initialState: { isVisibleEditor: true, variables: [], splitValue: '' },
   reducers: {
     setIsVisibleEditor: (state, { payload }) => {
       state.isVisibleEditor = payload;
@@ -16,6 +13,9 @@ export const UiSlice = createSlice({
       if (!state.variables.includes(payload)) {
         state.variables.push(payload);
       }
+    },
+    setSplitValue: (state: INITIAL_STATE_PROPS, { payload }) => {
+      state.splitValue = payload;
     },
   },
   extraReducers: {},
@@ -27,7 +27,11 @@ export const selectorVisibleEditor = (state: {
 export const selectorVariableNames = (state: {
   ui: INITIAL_STATE_PROPS;
 }): string[] => state.ui.variables;
+export const selectorSplitValue = (state: {
+  ui: INITIAL_STATE_PROPS;
+}): string => state.ui.splitValue;
 
-export const { setIsVisibleEditor, setVariableIntoEditor } = UiSlice.actions;
+export const { setIsVisibleEditor, setVariableIntoEditor, setSplitValue } =
+  UiSlice.actions;
 
 export default UiSlice.reducer;

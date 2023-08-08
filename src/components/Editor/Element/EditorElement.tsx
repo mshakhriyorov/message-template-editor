@@ -1,20 +1,25 @@
 import React from 'react';
 
-type PROPS = {
-  children: string;
-  element: { type: 'variable' | 'paragraph'; character: string };
-  attributes: React.HTMLAttributes<HTMLElement>;
-};
+import './EditorElement.scss';
+
+import type { EDITOR_PROPS } from '../../../types/editor';
 
 export const EditorElement = ({
   children,
   element,
   attributes,
-}: PROPS): JSX.Element => {
+}: EDITOR_PROPS): JSX.Element => {
   if (element.type === 'variable') {
     return (
       <span {...attributes}>
-        {element.character} {children}
+        <span
+          className="editor-element__variable"
+          contentEditable="false"
+          suppressContentEditableWarning={true}
+        >
+          {element.character}
+        </span>
+        {children}
       </span>
     );
   }
