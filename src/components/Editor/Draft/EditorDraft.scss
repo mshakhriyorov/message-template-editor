@@ -1,0 +1,43 @@
+@import '../../../assets/style/variables';
+
+.editor-draft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.editor-draft__container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border: 1px solid #d0d5dd;
+  padding: 12px;
+  border-radius: 8px;
+  position: relative;
+
+  &--focus {
+    border: 1px solid $primary-color;
+  }
+}
+
+.editor-draft__container-button {
+  display: none;
+  margin-top: 12px;
+
+  &--visible {
+    display: block;
+  }
+}
+
+.DraftEditor-root {
+  @include size(100%, auto);
+
+  border: none;
+  color: $white-color;
+}
+
+.public-DraftEditorPlaceholder-root {
+  color: grey;
+  position: absolute;
+  z-index: -1;
+}

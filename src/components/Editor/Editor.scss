@@ -14,22 +14,3 @@
   padding: 16px;
   font-size: 24px;
 }
-
-.editor__slate {
-  background: #31363b;
-  padding: 12px;
-  box-shadow: $input-effect;
-  border: 1px solid #d0d5dd;
-  border-radius: 8px;
-}
-
-.editor__input {
-  color: $white-color;
-  background: #31363b;
-  border: none;
-  line-height: 25px;
-
-  &:focus-visible {
-    outline: none;
-  }
-}

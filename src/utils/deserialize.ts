@@ -1,5 +1,3 @@
-import { jsx } from 'slate-hyperscript';
-
 // define the type for marks
 type Marks = Record<string, unknown>;
 
@@ -25,8 +23,8 @@ export const deserializeNodes: DeserializeNodes = (el, marks = {}) => {
 
   switch (el.nodeName) {
     // Elements:
-    case 'BODY':
-      return jsx('fragment', {}, children);
+    // case 'BODY':
+    //   return jsx('fragment', {}, children);
     case 'BR':
       return '\n';
     default:

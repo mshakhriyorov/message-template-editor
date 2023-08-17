@@ -1,9 +1,11 @@
 import type { Editor } from 'slate';
 
 export type EDITOR_PROPS = {
-  children: string;
-  element: { type: 'variable' | 'paragraph' | string; character: string };
-  attributes: React.HTMLAttributes<HTMLElement>;
+  id: string;
+  text: string;
+  insertText: { id: string; text: string[] };
+  onClearInsertArr: () => void;
+  setInCursorInputId: (id: string) => void;
 };
 
 export type EDITOR_HEADER_PROPS = {
